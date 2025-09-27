@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comtellion Services - Your Trusted Service Provider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #012060;
+            --secondary: #2e86c1;
+            --accent: #f39c12;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+            --success: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: #e67e22;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 10px 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/Comtellion.png');
+    background-size: 100% 80%; /* stretches image to fit width and height */
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Services Section */
+        .services {
+            background: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-list {
+            text-align: left;
+            list-style-type: none;
+        }
+        
+        .service-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .service-list li:before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text {
+            padding-right: 20px;
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* CEO Section */
+        .ceo-section {
+            background: var(--light);
+        }
+        
+        .ceo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .ceo-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .ceo-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .ceo-info h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .ceo-title {
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .assistant-section {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .assistant-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .assistant-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-details p {
+            margin: 0;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details p:hover {
+            color: var(--primary);
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-content, .ceo-container, .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .about-text {
+                padding-right: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .assistant-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <style>
+    .logo {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        
+    }
+
+    .logo-img {
+        width: 50px; /* adjust as needed */
+        height: 50px;
+        margin-right: 10px; /* space between logo and text */
+        margin-left: -20px;
+    }
+
+    .logo span {
+        margin-left: 5px; /* space between Comtellion and Services */
+        color: #ffcc00; /* optional color for Services text */
+    }
+</style>
+</head>
+<body>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/2348036364588?text=Hello%20Comtellion%20Services,%20I%20am%20interested%20in%20your%20services." 
+   class="whatsapp-btn" target="_blank">
+   <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Header -->
+<header id="header">
+    <div class="container">
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="Comtellion Logo" class="logo-img">
+                Comtellion <span style="font-size: 1.3rem; font-style: italic; margin-top: 5px;">Services</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#ceo">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Comtellion Services</h1>
+                <p>Your trusted partner for NYSC, NIN, JAMB, Remita, and other essential services in Nigeria</p>
+                <a href="#services" class="btn btn-primary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>NYSC Services</h3>
+                    <ul class="service-list">
+                        <li>Registration</li>
+                        <li>Direct Posting</li>
+                        <li>Relocation</li>
+                        <li>Medical Fitness/Report</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>NIN Enrollment</h3>
+                    <ul class="service-list">
+                        <li>New Enrollment</li>
+                        <li>Corrections Of Name</li>
+                        <li>Change Of Name</li>
+                        <li>Change Of Date Of Birth</li>
+                        <li>IP Clearing</li>
+                        <li>Validation</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>JAMB Services</h3>
+                    <ul class="service-list">
+                        <li>Registration</li>
+                        <li>Admission Letter</li>
+                        <li>Result Slip Printing</li>
+                        <li>Remitta</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    <h3>Remita Services</h3>
+                    <ul class="service-list">
+                        <li>Generation</li>
+                        <li>Remita Payments</li>
+                        <li>Payment For Clearance Fee</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Other Services</h3>
+                    <ul class="service-list">
+                        <li>CAC Registration</li>
+                        <li>BVN Enrollment</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3>Uniport Services</h3>
+                    <ul class="service-list">
+                        <li>Printing Of School ID Card (Undergraduate Only)</li>
+                        <li>HOD Stamp & Signed (Clearance Form)</li>
+                        <li>Signed Data Page</li>
+                        <li>Mobilisation Teller (2)</li>
+                        <li>Accommodation: School Hostels or Off Campus Lodges</li>
+                        <li>Year 1 Clearance Fees, Requirements And Steps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Comtellion Services</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>Comtellion Services is a trusted service provider located at the University of Port Harcourt (Uniport) campus. We specialize in assisting students, graduates, and professionals with essential services that simplify bureaucratic processes.</p>
+                    <p>With years of experience and a deep understanding of the Nigerian educational and administrative systems, we provide reliable and efficient services for NYSC, NIN, JAMB, Remita, and other essential documentation needs.</p>
+                    <p>Our team is dedicated to ensuring that our clients receive prompt, professional service with attention to detail. We understand the importance of these documents and work diligently to ensure they are processed correctly and efficiently.</p>
+                    <a href="#contact" class="btn">Contact Us</a>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" alt="Comtellion Services Office">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CEO Section -->
+    <section id="ceo" class="ceo-section">
+        <div class="container">
+            <h2>Our Leadership</h2>
+            <div class="ceo-container">
+                <div class="ceo-image fade-in">
+                    <img src="images/ceo.png" alt="CEO of Comtellion Services">
+                </div>
+                <div class="ceo-info fade-in">
+                    <h3>Engr Charles Uwakwe</h3>
+                    <p class="ceo-title"style=" text-align: center; margin-top: -20px;">Chief Executive Officer</p>
+                    <p style="margin-top: -10px;">Engr Charles Uwakwe is the visionary founder and CEO of Comtellion Services. With over 5 years of experience in student services and administrative support, he has built Comtellion into a trusted name for essential services at the University of Port Harcourt and beyond.</p>
+                    <p>His expertise spans across NYSC processing, NIN enrollment, JAMB services, and various other documentation needs. Engr Charles Uwakwe is passionate about simplifying bureaucratic processes for students and professionals, ensuring they can focus on their academic and career goals.</p>
+                    <p>Under his leadership, Comtellion Services has helped thousands of students navigate complex administrative requirements with efficiency and professionalism.</p>
+                </div>
+            </div>
+            <div class="assistant-section fade-in">
+                <div class="assistant-image">
+                    <img src="images/aceo.png" alt="Executive Assistant">
+                </div>
+                <div class="assistant-info">
+                    <h3>Miss Chiamaka Okoro</h3>
+                    <p class="ceo-title" style="margin-top: -20px;">Executive Assistant & Service Coordinator</p>
+                    <p style=" margin-top: -10px;">Miss Chiamaka Okoro brings over 3 years of administrative excellence to Comtellion Services. With a background in customer service and document processing, she ensures the seamless execution of all client services.</p>
+                    <p>Her attention to detail and exceptional organizational skills have been instrumental in maintaining Comtellion's reputation for reliability and efficiency. Chiamaka is dedicated to providing outstanding support to our clients and ensuring their documentation needs are met promptly.</p>
+                    <p>She specializes in NYSC and NIN services, with extensive knowledge of the latest requirements and procedures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p onclick="window.location.href='tel:+2348036364588'">+234 803 636 4588</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p onclick="window.location.href='mailto:Contellion@gmail.com'">Comtellion@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Address</h3>
+                            <p onclick="window.open('https://www.google.com/maps/place/University+of+Port+Harcourt','_blank')">Shop 4 behind Post NCE/Sandwich Office, Park in Choba Campus, Uniport</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Website</h3>
+                            <p onclick="window.open('http://www.comtellion.com','_blank')">www.comtellion.com</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/2348036364588?text=Hello%20Comtellion%20Services,%20I%20am%20interested%20in%20your%20services." 
+   class="btn" target="_blank">
+   Chat on WhatsApp
+</a>
+                </div>
+                <div class="map-container fade-in">
+                    <iframe src="images/shop.png" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Comtellion Services</h3>
+                    <p>Your trusted partner for essential services including NYSC, NIN, JAMB, Remita, and more. Located at the University of Port Harcourt.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#ceo">Leadership</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">NYSC Services</a></li>
+                        <li><a href="#services">NIN Enrollment</a></li>
+                        <li><a href="#services">JAMB Services</a></li>
+                        <li><a href="#services">Remita Services</a></li>
+                        <li><a href="#services">Uniport Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> <a href="tel:+2348036364588">+234 803 636 4588</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:Contellion@gmail.com">Comtellion@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps/place/University+of+Port+Harcourt" target="_blank">Uniport, Choba Campus</a></li>
+                        <li><i class="fas fa-globe"></i> <a href="http://www.comtellion.com" target="_blank">www.comtellion.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                  <p style="font-size: 13px; margin-bottom: -5px;">&copy; 2025 Comtellion Services. All rights reserved.  <p style="font-size: 12px; margin-bottom: -10px;">Developed by<strong><a href="https://github.com/Suraj-Salihu" target="_blank" style="color: #7474e3; text-decoration: underline;">Sooraj</a></strong></p></p></div></div></footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        
+        // Trigger on page load for elements already in view
+        window.addEventListener('load', fadeInOnScroll);
+        
+        // Make contact details clickable
+        document.querySelectorAll('.contact-details p').forEach(item => {
+            item.style.cursor = 'pointer';
+        });
+    </script>
+</body>
+</html>
